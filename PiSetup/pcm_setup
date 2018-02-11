@@ -1,0 +1,6 @@
+#!/bin/bash
+
+sudo apt-get update
+sudo apt-get install python-smbus -y
+sudo apt-get install i2c-tools -y
+sudo i2cdetect -y 1
