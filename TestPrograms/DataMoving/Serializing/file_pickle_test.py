@@ -11,7 +11,7 @@ with open('data.topsecret', 'w+b') as i:
     # Pickle the 'data' dictionary using the highest protocol available.
     pickle.dump(data, i, pickle.HIGHEST_PROTOCOL)
 
-with open('data.topsecret' , 'r+b') as o:
-    data_in =  pickle.load(o)
+with open('data.topsecret', 'r+b') as o:
+    data_in = pickle.load(o)
 
 print(data_in)
