@@ -1,7 +1,9 @@
+#!/usr/bin/env python
+
 import pygame
 import pickle
 import socket
-import sys
+# import sys
 import time
 
 
@@ -44,15 +46,11 @@ def get_joystick_data(joystick):
     return joystick_data
 
 
-def pickle_data(data):
-    pickled_data = pickle.dumps(data)
-    return pickled_data
-
-
-s.connect(('127.0.0.1', port))
+s.connect(('10.0.0.10', port))
 while xbone.get_button(7) is 0:
     xbone_data = get_joystick_data(xbone)
-    pickled_xbone = pickle_data(xbone_data)
+    print(xbone_data)
+    pickled_xbone = pickle.dumps(xbone_data)
     # print(sys.getsizeof(pickled_xbone))
     s.send(pickled_xbone)
     time.sleep(0.1)
