@@ -20,7 +20,7 @@ while True:
     if not pickled_data:
         break
     data = pickle.loads(pickled_data)
-    y_axis = (data[0][0] * 2 + 400)
+    y_axis = (data[0][1] * -2 + 400)
     pwm.set_pwm(pwm_channel, 0, y_axis)
 conn.close()
 s.close()
