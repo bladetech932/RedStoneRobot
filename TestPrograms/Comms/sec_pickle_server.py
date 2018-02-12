@@ -1,4 +1,5 @@
-import socket, sys
+import pickle, socket, sys, shutil
+
 host = '10.0.0.50' #private address locked for host
 port = 932
 
@@ -10,15 +11,12 @@ while True:
     conn, addr = s.accept()
     print('connection from: ' + str(addr))
     while True:
-        data = conn.recv(1024).decode()
-        print(type(str(data)))
-        print(sys.getsizeof(data))
-        if not data:
-            print("connection closed")
-            break
-        print(data)
+        data = conn.recv(1024)
+        unpickled_dict = pickle.loads(data)
+        print(unpickled_dict)
         #print ('sending: ' + str(data))
-        #conn.send(data.encode())
+        conn.send(data)
+        break
     break
 conn.close
 s.close()

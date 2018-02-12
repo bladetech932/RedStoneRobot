@@ -1,0 +1,2 @@
+https://linuxconfig.org/bash-scripting-tutorial
+http://tldp.org/LDP/Bash-Beginners-Guide/html/

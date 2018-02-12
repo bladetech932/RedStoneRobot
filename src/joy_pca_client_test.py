@@ -1,0 +1,58 @@
+import pygame
+import pickle
+import socket
+import sys
+import time
+
+
+# private_host = '10.0.0.50'  # private address for testing
+# public_host = '47.217.97.185'  # public address for runtime
+port = 55555
+
+s = socket.socket()
+
+pygame.init()
+pygame.joystick.init()
+
+xbone = pygame.joystick.Joystick(0)
+xbone.init()
+
+joystick_dead_band = 20  # max value = 127
+
+# print("num of joysticks", pygame.joystick.get_count())
+# print("name is", xbone.get_name())
+# print("num of axes", xbone.get_numaxes())
+# print("num of buttons", xbone.get_numbuttons())
+
+
+def get_joystick_data(joystick):
+    axes_data = []
+    button_data = []
+    hat_data = []
+    joystick_data = [axes_data, button_data, hat_data]
+    for event in pygame.event.get():
+        pass
+    for axis in range(joystick.get_numaxes()):
+        mod_axis = (round(joystick.get_axis(axis)*127))
+        if abs(mod_axis) < joystick_dead_band:
+            mod_axis = 0
+        joystick_data[0].append(mod_axis)
+    for button in range(joystick.get_numbuttons()):
+        joystick_data[1].append(joystick.get_button(button))
+    for hat in range(joystick.get_numhats()):
+        joystick_data[2].append(joystick.get_hat(hat))
+    return joystick_data
+
+
+def pickle_data(data):
+    pickled_data = pickle.dumps(data)
+    return pickled_data
+
+
+s.connect(('127.0.0.1', port))
+while xbone.get_button(7) is 0:
+    xbone_data = get_joystick_data(xbone)
+    pickled_xbone = pickle_data(xbone_data)
+    # print(sys.getsizeof(pickled_xbone))
+    s.send(pickled_xbone)
+    time.sleep(0.1)
