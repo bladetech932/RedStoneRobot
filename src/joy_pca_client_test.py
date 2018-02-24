@@ -7,8 +7,8 @@ import socket
 import time
 
 
-# private_host = '10.0.0.50'  # private address for testing
-public_host = '47.217.107.128'  # public address for runtime
+host = '10.0.0.50'  # private address for testing
+# host = '47.217.107.128'  # public address for runtime
 port = 55555
 
 s = socket.socket()
@@ -46,7 +46,7 @@ def get_joystick_data(joystick):
     return joystick_data
 
 
-s.connect((public_host, port))
+s.connect((host, port))
 while xbone.get_button(7) is 0:
     xbone_data = get_joystick_data(xbone)
     print(xbone_data)

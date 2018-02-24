@@ -5,7 +5,7 @@ import socket
 import Adafruit_PCA9685 as pca
 
 
-def convert_pcm(self, joy_val, invert):
+def convert_pcm(joy_val, invert):
     if joy_val >= 1:
         joy_val = 1
     if invert:
@@ -39,9 +39,9 @@ while True:
     BR_motor = convert_pcm((data[0][0] + data[0][1])/2, True)
     print("FL:", FL_motor, " FR:", FR_motor, " BL:", BL_motor, " BR:", BR_motor)
 
-    pwm.set_pwm(FL_channel, 0, FL_motor)
-    pwm.set_pwm(FR_channel, 0, FR_motor)
-    pwm.set_pwm(BL_channel, 0, BL_motor)
-    pwm.set_pwm(BR_channel, 0, BR_motor)
+    pwm.set_pwm(0, 0, FL_motor)
+    pwm.set_pwm(1, 0, FR_motor)
+    pwm.set_pwm(2, 0, BL_motor)
+    pwm.set_pwm(3, 0, BR_motor)
 conn.close()
 s.close()
