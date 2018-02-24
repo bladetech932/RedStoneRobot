@@ -4,22 +4,12 @@ import pickle
 import socket
 import Adafruit_PCA9685 as pca
 
-
-def convert_pcm(joy_val, invert):
-    if joy_val >= 1:
-        joy_val = 1
-    if invert:
-        joy_val = -1 * joy_val
-    joy_val = joy_val * 2 + 400
-    return joy_val
-
-
 pwm = pca.PCA9685()
 pwm.set_pwm_freq(60)
 FL_channel = 0
-FR_channel = 1
-BL_channel = 2
-BR_channel = 3
+# FR_channel = 1
+# BL_channel = 2
+# BR_channel = 3
 
 port = 55555
 s = socket.socket()
@@ -33,7 +23,7 @@ while True:
     if not pickled_data:
         break
     data = pickle.loads(pickled_data)
-    FL_motor = convert_pcm(((data[0][0] + data[0][1])/2), True)
+    FL_motor = (data[0][0] * -2 + 400)
     # FR_motor = convert_pcm((data[0][0] - data[0][1])/2, True)
     # BL_motor = convert_pcm((data[0][0] - data[0][1])/2, True)
     # BR_motor = convert_pcm((data[0][0] + data[0][1])/2, True)

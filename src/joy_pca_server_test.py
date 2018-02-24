@@ -6,7 +6,7 @@ import Adafruit_PCA9685 as pca
 
 pwm = pca.PCA9685()
 pwm.set_pwm_freq(60)
-pwm_channel = 0
+FL_channel = 0
 
 port = 55555
 s = socket.socket()
@@ -20,7 +20,7 @@ while True:
     if not pickled_data:
         break
     data = pickle.loads(pickled_data)
-    y_axis = (data[0][1] * -2 + 400)
-    pwm.set_pwm(pwm_channel, 0, y_axis)
+    FL_motor = (data[0][1] * -2 + 400)
+    pwm.set_pwm(FL_channel, 0, FL_motor)
 conn.close()
 s.close()
