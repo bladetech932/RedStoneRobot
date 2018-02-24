@@ -23,7 +23,7 @@ while True:
     if not pickled_data:
         break
     data = pickle.loads(pickled_data)
-    FL_motor = (data[0][0] * -2 + 400)
+    FL_motor = (data[0][1] * -2 + 400)
     # FR_motor = convert_pcm((data[0][0] - data[0][1])/2, True)
     # BL_motor = convert_pcm((data[0][0] - data[0][1])/2, True)
     # BR_motor = convert_pcm((data[0][0] + data[0][1])/2, True)
