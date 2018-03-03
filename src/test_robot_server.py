@@ -23,10 +23,10 @@ while True:
     if not pickled_data:
         break
     data = pickle.loads(pickled_data)
-    FL_motor = ((-data[0][1] + data[0][0]) * -1 + 400)
-    FR_motor = ((-data[0][1] - data[0][0]) * -1 + 400)
-    BL_motor = ((-data[0][1] - data[0][0]) * -1 + 400)
-    BR_motor = ((-data[0][1] + data[0][0]) * -1 + 400)
+    FL_motor = ((-data[0][1] + data[0][0]) * 2 + 420)
+    FR_motor = ((-data[0][1] - data[0][0]) * -2 + 420)
+    BL_motor = ((-data[0][1] - data[0][0]) * 2 + 420)
+    BR_motor = ((-data[0][1] + data[0][0]) * -2 + 420)
     print("FL:", FL_motor, " FR:", FR_motor, " BL:", BL_motor, " BR:", BR_motor)
 
     pwm.set_pwm(FL_channel, 0, FL_motor)
