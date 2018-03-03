@@ -2,7 +2,7 @@
 import cv2
 import numpy as np
 import os
-
+# test comment
 # os.system("raspistill -t 1000 -vf -n -hf -o test.jpg -w 640 -h 480 -q 50")
 
 img = cv2.imread('test.jpg', 0)
