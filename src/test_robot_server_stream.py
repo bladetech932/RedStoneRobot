@@ -10,19 +10,38 @@ import os
 
 
 
-'''
-def videos():
-    # Capture frame-by-frame
-    ret, frame = cap.read()
-    print("im here")
-    # Our operations on the frame come here
-    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
-    # Display the resulting frame
-    cv2.imshow('frame', gray)
+def pic():
+    os.system("raspistill -t 1000 -vf -n -hf -o test.jpg -w 640 -h 480 -q 50")
+    img = cv2.imread('test.jpg', 0)
+    cv2.imshow('video', img)
+
+def loop():
+    while True:
+
+        pickled_data = conn.recv(1024)
+        if not pickled_data:
+            break
+
+        data = pickle.loads(pickled_data)
+        FL_motor = ((-data[0][1] + data[0][0]) * -2 + 420)
+        FR_motor = ((-data[0][1] - data[0][0]) * 2 + 420)
+        BL_motor = ((-data[0][1] - data[0][0]) * -2 + 420)
+        BR_motor = ((-data[0][1] + data[0][0]) * 2 + 420)
+        print("FL:", FL_motor, " FR:", FR_motor, " BL:", BL_motor, " BR:", BR_motor)
+
+        pwm.set_pwm(FL_channel, 0, FL_motor)
+        pwm.set_pwm(FR_channel, 0, FR_motor)
+        pwm.set_pwm(BL_channel, 0, BL_motor)
+        pwm.set_pwm(BR_channel, 0, BR_motor)
+
+        if data[1][0] is 1:
+            break
 
 
-'''
+
+
+
 
 pwm = pca.PCA9685()
 pwm.set_pwm_freq(60)
@@ -39,30 +58,8 @@ print("waiting for connection...")
 conn, addr = s.accept()
 # print("connected to: ", addr)
 while True:
-    os.system("raspistill -t 1000 -vf -n -hf -o test.jpg -w 640 -h 480 -q 50")
-    img = cv2.imread('test.jpg', 0)
-    cv2.imshow('video', img)
-
-    pickled_data = conn.recv(1024)
-    if not pickled_data:
-        break
-    
-    data = pickle.loads(pickled_data)
-    FL_motor = ((-data[0][1] + data[0][0]) * -2 + 420)
-    FR_motor = ((-data[0][1] - data[0][0]) * 2 + 420)
-    BL_motor = ((-data[0][1] - data[0][0]) * -2 + 420)
-    BR_motor = ((-data[0][1] + data[0][0]) * 2 + 420)
-    print("FL:", FL_motor, " FR:", FR_motor, " BL:", BL_motor, " BR:", BR_motor)
-
-    pwm.set_pwm(FL_channel, 0, FL_motor)
-    pwm.set_pwm(FR_channel, 0, FR_motor)
-    pwm.set_pwm(BL_channel, 0, BL_motor)
-    pwm.set_pwm(BR_channel, 0, BR_motor)
-
-
-# When everything done, release the capture
-cap.release()
-cv2.destroyAllWindows()
+    loop()
+    pic()
 
 conn.close()
 s.close()
