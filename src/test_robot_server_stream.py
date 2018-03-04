@@ -9,7 +9,7 @@ import cv2
 
 cap = cv2.VideoCapture(0)
 
-
+'''
 def videos():
     # Capture frame-by-frame
     ret, frame = cap.read()
@@ -23,7 +23,7 @@ def videos():
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
-
+'''
 
 
 pwm = pca.PCA9685()
@@ -57,8 +57,9 @@ while True:
     pwm.set_pwm(BL_channel, 0, BL_motor)
     pwm.set_pwm(BR_channel, 0, BR_motor)
 
-    videos()
-
+    os.system("raspistill -t 1000 -vf -n -hf -o test.jpg -w 640 -h 480 -q 50")
+    img = cv2.imread('test.jpg', 0)
+    cv2.imshow('video', img)
 
 
 # When everything done, release the capture
