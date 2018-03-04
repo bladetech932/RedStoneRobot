@@ -23,6 +23,7 @@ def videos():
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
+
 pwm = pca.PCA9685()
 pwm.set_pwm_freq(60)
 FL_channel = 0
