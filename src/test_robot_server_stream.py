@@ -10,7 +10,7 @@ import os
 
 
 
-
+'''
 def videos():
     # Capture frame-by-frame
     ret, frame = cap.read()
@@ -21,9 +21,8 @@ def videos():
     # Display the resulting frame
     cv2.imshow('frame', gray)
 
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        break
 
+'''
 
 pwm = pca.PCA9685()
 pwm.set_pwm_freq(60)
