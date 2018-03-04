@@ -24,8 +24,6 @@ def videos():
         break
 
 '''
-
-
 pwm = pca.PCA9685()
 pwm.set_pwm_freq(60)
 FL_channel = 0
@@ -60,7 +58,6 @@ while True:
     os.system("raspistill -t 1000 -vf -n -hf -o test.jpg -w 640 -h 480 -q 50")
     img = cv2.imread('test.jpg', 0)
     cv2.imshow('video', img)
-
 
 # When everything done, release the capture
 cap.release()
