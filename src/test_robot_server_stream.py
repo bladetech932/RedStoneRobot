@@ -21,9 +21,6 @@ def videos():
     cv2.imshow('frame', gray)
 
 
-
-
-
 pwm = pca.PCA9685()
 pwm.set_pwm_freq(60)
 FL_channel = 0
@@ -56,7 +53,6 @@ while True:
     pwm.set_pwm(BR_channel, 0, BR_motor)
 
     videos()
-
 
 
 # When everything done, release the capture
