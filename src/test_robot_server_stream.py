@@ -34,7 +34,6 @@ while True:
         break
 
 
-
     pickled_data = conn.recv(1024)
     if not pickled_data:
         break
