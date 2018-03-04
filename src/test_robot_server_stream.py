@@ -9,6 +9,20 @@ import cv2
 
 cap = cv2.VideoCapture(0)
 
+def videos():
+    # Capture frame-by-frame
+    ret, frame = cap.read()
+
+    # Our operations on the frame come here
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+
+    # Display the resulting frame
+    if data[1][0] is 1:
+        cv2.imshow('frame', gray)
+
+
+
+
 
 pwm = pca.PCA9685()
 pwm.set_pwm_freq(60)
@@ -41,6 +55,7 @@ while True:
     pwm.set_pwm(BL_channel, 0, BL_motor)
     pwm.set_pwm(BR_channel, 0, BR_motor)
 
+    videos():
 
     # Capture frame-by-frame
     ret, frame = cap.read()
