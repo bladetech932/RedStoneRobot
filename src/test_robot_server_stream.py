@@ -35,10 +35,8 @@ def loop():
             pwm.set_pwm(BL_channel, 0, BL_motor)
             pwm.set_pwm(BR_channel, 0, BR_motor)
 
-            pass
         except Exception as e:
-            print("Damn errors")
-            raise
+            print(e)
 
         if data[1][0] is 1:
             break
