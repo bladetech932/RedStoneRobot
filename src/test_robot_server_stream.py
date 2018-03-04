@@ -49,8 +49,9 @@ while True:
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
     # Display the resulting frame
-    cv2.imshow('frame', gray)
-    
+    if data{1}{1} is 1
+        cv2.imshow('frame', gray)
+
 
 # When everything done, release the capture
 cap.release()
