@@ -7,6 +7,8 @@ import numpy as np
 import cv2
 
 
+cap = cv2.VideoCapture(0)
+
 
 pwm = pca.PCA9685()
 pwm.set_pwm_freq(60)
@@ -37,5 +39,10 @@ while True:
     pwm.set_pwm(FR_channel, 0, FR_motor)
     pwm.set_pwm(BL_channel, 0, BL_motor)
     pwm.set_pwm(BR_channel, 0, BR_motor)
+
+# When everything done, release the capture
+cap.release()
+cv2.destroyAllWindows()
+
 conn.close()
 s.close()
