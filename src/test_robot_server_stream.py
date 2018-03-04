@@ -18,8 +18,7 @@ def videos():
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
     # Display the resulting frame
-    if data[1][0] is 1:
-        cv2.imshow('frame', gray)
+    cv2.imshow('frame', gray)
 
 
 
