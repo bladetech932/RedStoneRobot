@@ -39,6 +39,14 @@ while True:
     pwm.set_pwm(FR_channel, 0, FR_motor)
     pwm.set_pwm(BL_channel, 0, BL_motor)
     pwm.set_pwm(BR_channel, 0, BR_motor)
+    # Capture frame-by-frame
+    ret, frame = cap.read()
+
+    # Our operations on the frame come here
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+
+    # Display the resulting frame
+    cv2.imshow('frame', gray)
 
 # When everything done, release the capture
 cap.release()
