@@ -19,7 +19,6 @@ def pic():
 def loop():
     while True:
 
-        pickled_data = conn.recv(1024)
 
         try:
             pickled_data = conn.recv(1024)
