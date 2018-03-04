@@ -28,7 +28,7 @@ while True:
     pickled_data = conn.recv(1024)
     if not pickled_data:
         break
-    
+
     data = pickle.loads(pickled_data)
     FL_motor = ((-data[0][1] + data[0][0]) * -2 + 420)
     FR_motor = ((-data[0][1] - data[0][0]) * 2 + 420)
@@ -41,10 +41,10 @@ while True:
     pwm.set_pwm(BL_channel, 0, BL_motor)
     pwm.set_pwm(BR_channel, 0, BR_motor)
 
-    '''
+
     # Capture frame-by-frame
     ret, frame = cap.read()
-
+'''
     # Our operations on the frame come here
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
