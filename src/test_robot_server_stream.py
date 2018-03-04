@@ -56,7 +56,7 @@ while True:
     pwm.set_pwm(BL_channel, 0, BL_motor)
     pwm.set_pwm(BR_channel, 0, BR_motor)
 
-    videos():
+    videos()
 
 
 
