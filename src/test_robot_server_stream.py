@@ -8,6 +8,7 @@ import cv2
 import os
 
 cap = cv2.VideoCapture(0)
+
 pwm = pca.PCA9685()
 pwm.set_pwm_freq(60)
 FL_channel = 0
@@ -70,6 +71,6 @@ while True:
     pic()
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
-        
+
 conn.close()
 s.close()
