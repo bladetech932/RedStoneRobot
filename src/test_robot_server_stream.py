@@ -39,8 +39,6 @@ def pic():
 
     # Display the resulting frame
     cv2.imshow('frame', gray)
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        break
 
 
 def loop():
@@ -67,27 +65,11 @@ def loop():
         if data[1][0] is 1:
             break
 
-
-
-
-
-pwm = pca.PCA9685()
-pwm.set_pwm_freq(60)
-FL_channel = 0
-FR_channel = 1
-BL_channel = 2
-BR_channel = 3
-
-port = 55555
-s = socket.socket()
-s.bind(('', port))
-s.listen(1)
-print("waiting for connection...")
-conn, addr = s.accept()
-# print("connected to: ", addr)
 while True:
     loop()
     pic()
-
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+        
 conn.close()
 s.close()
