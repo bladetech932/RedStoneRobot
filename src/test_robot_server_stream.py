@@ -53,7 +53,7 @@ def loop():
         FR_motor = ((-data[0][1] - data[0][0]) * 2 + 420)
         BL_motor = ((-data[0][1] - data[0][0]) * -2 + 420)
         BR_motor = ((-data[0][1] + data[0][0]) * 2 + 420)
-    #    print("FL:", FL_motor, " FR:", FR_motor, " BL:", BL_motor, " BR:", BR_motor)
+        print("FL:", FL_motor, " FR:", FR_motor, " BL:", BL_motor, " BR:", BR_motor)
 
         pwm.set_pwm(FL_channel, 0, FL_motor)
         pwm.set_pwm(FR_channel, 0, FR_motor)
