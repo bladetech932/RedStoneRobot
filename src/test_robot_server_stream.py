@@ -35,6 +35,7 @@ def pic():
     # Capture frame-by-frame
     ret, frame = cap.read()
 
+    print("Im in the video loop")
     # Our operations on the frame come here
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
@@ -56,7 +57,7 @@ def loop():
         FR_motor = ((-data[0][1] - data[0][0]) * 2 + 420)
         BL_motor = ((-data[0][1] - data[0][0]) * -2 + 420)
         BR_motor = ((-data[0][1] + data[0][0]) * 2 + 420)
-        print("FL:", FL_motor, " FR:", FR_motor, " BL:", BL_motor, " BR:", BR_motor)
+    #    print("FL:", FL_motor, " FR:", FR_motor, " BL:", BL_motor, " BR:", BR_motor)
 
         pwm.set_pwm(FL_channel, 0, FL_motor)
         pwm.set_pwm(FR_channel, 0, FR_motor)
