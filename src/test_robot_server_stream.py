@@ -67,8 +67,7 @@ while True:
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
-    if data[1][0] is 1:
-        break
+
 
 conn.close()
 s.close()
