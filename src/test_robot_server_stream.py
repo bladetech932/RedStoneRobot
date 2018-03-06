@@ -44,33 +44,30 @@ def pic():
 
 
 def loop():
-    while True:
+    try:
+        pickled_data = conn.recv(1024)
+        data = pickle.loads(pickled_data)
+    except Exception as e:
+        print(e)
 
+    FL_motor = ((-data[0][1] + data[0][0]) * -2 + 420)
+    FR_motor = ((-data[0][1] - data[0][0]) * 2 + 420)
+    BL_motor = ((-data[0][1] - data[0][0]) * -2 + 420)
+    BR_motor = ((-data[0][1] + data[0][0]) * 2 + 420)
+#    print("FL:", FL_motor, " FR:", FR_motor, " BL:", BL_motor, " BR:", BR_motor)
 
-        try:
-            pickled_data = conn.recv(1024)
-            data = pickle.loads(pickled_data)
-        except Exception as e:
-            print(e)
-
-        FL_motor = ((-data[0][1] + data[0][0]) * -2 + 420)
-        FR_motor = ((-data[0][1] - data[0][0]) * 2 + 420)
-        BL_motor = ((-data[0][1] - data[0][0]) * -2 + 420)
-        BR_motor = ((-data[0][1] + data[0][0]) * 2 + 420)
-    #    print("FL:", FL_motor, " FR:", FR_motor, " BL:", BL_motor, " BR:", BR_motor)
-
-        pwm.set_pwm(FL_channel, 0, FL_motor)
-        pwm.set_pwm(FR_channel, 0, FR_motor)
-        pwm.set_pwm(BL_channel, 0, BL_motor)
-        pwm.set_pwm(BR_channel, 0, BR_motor)
-
-        if data[1][0] is 1:
-            break
+    pwm.set_pwm(FL_channel, 0, FL_motor)
+    pwm.set_pwm(FR_channel, 0, FR_motor)
+    pwm.set_pwm(BL_channel, 0, BL_motor)
+    pwm.set_pwm(BR_channel, 0, BR_motor)
 
 while True:
     loop()
     pic()
     if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+
+    if data[1][0] is 1:
         break
 
 conn.close()
