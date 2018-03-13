@@ -4,6 +4,7 @@ import msgpack
 import socket
 # import sys
 import time
+from StringIO import StringIO
 
 
 host = '10.0.0.50'  # private address for testing
@@ -49,7 +50,7 @@ s.connect((host, port))
 while xbone.get_button(7) is 0:
     xbone_data = get_joystick_data(xbone)
     print(xbone_data)
-    msg_xbone = msgpack.Packer()
+    msg_xbone = msgpack.packb(xbone_data)
 
     # print(sys.getsizeof(pickled_xbone))
     s.send(msg_xbone)
