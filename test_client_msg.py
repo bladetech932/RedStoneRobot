@@ -45,12 +45,19 @@ def get_joystick_data(joystick):
         joystick_data[2].append(joystick.get_hat(hat))
     return joystick_data
 
-
 s.connect((host, port))
+
+myfile = StringIO()
+packer=msgpack.Packer()
+
+
 while xbone.get_button(7) is 0:
     xbone_data = get_joystick_data(xbone)
     print(xbone_data)
-    msg_xbone = msgpack.packb(xbone_data)
+
+    myfile.write(packer.pack(xbone_data))
+
+    
 
     # print(sys.getsizeof(pickled_xbone))
     s.send(msg_xbone)

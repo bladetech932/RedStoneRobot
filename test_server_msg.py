@@ -22,7 +22,7 @@ while True:
 
     msg_data = conn.recv(1024)
 
-    data = msgpck.unpackb(msg_data)
+    data = msgpack.unpackb(msg_data)
 
     FL_motor = ((-data[0][1] + data[0][0]) * -2 + 420)
     FR_motor = ((-data[0][1] - data[0][0]) * 2 + 420)
