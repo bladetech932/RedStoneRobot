@@ -1,0 +1,25 @@
+run sudo raspi-config;
+  change user password to RedStone;
+  change local to en_us utf-8;
+  change keyboard to logitech internet 350 us_en, use all defaults for keyboard;
+  expand file system;
+  enable i2c, camera, spi, remote gpio;
+  reboot now;
+open etc/ssh/sshd_config and change port to 22222 for ssh access;
+sudo apt-get update;
+sudo apt-get upgrade;
+sudo apt-get purge wolfram-engine;
+sudo apt-get purge libreoffice;
+sudo apt-get install git;
+cd /bin
+sudo nano rsr ;
+add rm -rfd /home/pi/RedStoneRobot;
+add git clone https://github.com/bladetech932/RedStoneRobot /home/pi/RedStoneRobot;
+save;
+sudo chmod 777 rsr;
+update-alternatives --install /usr/bin/python python /usr/bin/python3.5 1
+update-alternatives --install /usr/bin/python python /usr/bin/python2.7 2
+update-alternatives --config python ; select 3.5
+check version with python --version ;
+install pip; sudo apt-get install python3-pip ;
+cd to RedStoneRobot/Setup/OpenCV and run bash ./install
