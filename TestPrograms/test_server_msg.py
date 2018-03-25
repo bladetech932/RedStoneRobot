@@ -25,8 +25,7 @@ while True:
     with open('data.msgpack') as data_file:
         data_loaded = msgpack.unpack(data_file)
 
-    print(data_loaded)    
-    '''
+
     FL_motor = ((-data[0][1] + data[0][0]) * -2 + 420)
     FR_motor = ((-data[0][1] - data[0][0]) * 2 + 420)
     BL_motor = ((-data[0][1] - data[0][0]) * -2 + 420)
@@ -37,6 +36,6 @@ while True:
     pwm.set_pwm(FR_channel, 0, FR_motor)
     pwm.set_pwm(BL_channel, 0, BL_motor)
     pwm.set_pwm(BR_channel, 0, BR_motor)
-    '''
+
 conn.close()
 s.close()
