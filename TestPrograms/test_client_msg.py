@@ -51,10 +51,13 @@ while xbone.get_button(7) is 0:
     xbone_data = get_joystick_data(xbone)
     print(xbone_data)
 
-    packed = msgpack.packb(xbone_data)
+with open('xbone_data.msgpack','w') as outfile:
+    msgpack.pack(xbone_data, outfile)
+
+    #packed = msgpack.packb(xbone_data)
 
 
 
     # print(sys.getsizeof(pickled_xbone))
-    s.send_multipart([packed])
+    s.send(outfile)
     time.sleep(0.1)
