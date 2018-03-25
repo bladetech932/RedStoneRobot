@@ -1,8 +1,10 @@
+
 import pygame
-import pickle
+import msgpack
 import socket
 # import sys
 import time
+
 
 
 host = '10.0.0.50'  # private address for testing
@@ -43,12 +45,16 @@ def get_joystick_data(joystick):
         joystick_data[2].append(joystick.get_hat(hat))
     return joystick_data
 
-
 s.connect((host, port))
+
 while xbone.get_button(7) is 0:
     xbone_data = get_joystick_data(xbone)
     print(xbone_data)
-    pickled_xbone = pickle.dumps(xbone_data)
+
+    packed = msgpack.packb(xbone_data)
+
+
+
     # print(sys.getsizeof(pickled_xbone))
-    s.send(pickled_xbone)
+    s.send(packed)
     time.sleep(0.1)

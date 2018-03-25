@@ -1,6 +1,4 @@
-#!/usr/bin/env python
-# this is a comment
-import pickle
+import msgpack
 import socket
 import Adafruit_PCA9685 as pca
 
@@ -9,7 +7,7 @@ pwm.set_pwm_freq(60)
 FL_channel = 0
 FR_channel = 1
 BL_channel = 2
-BR_channel = 5
+BR_channel = 3
 
 port = 55555
 s = socket.socket()
@@ -18,11 +16,14 @@ s.listen(1)
 print("waiting for connection...")
 conn, addr = s.accept()
 # print("connected to: ", addr)
+
+
 while True:
-    pickled_data = conn.recv(1024)
-    if not pickled_data:
-        break
-    data = pickle.loads(pickled_data)
+
+    packed = conn.recv(1024)
+
+    unpacked = msgpack.unpackb(packed)
+
     FL_motor = ((-data[0][1] + data[0][0]) * -2 + 420)
     FR_motor = ((-data[0][1] - data[0][0]) * 2 + 420)
     BL_motor = ((-data[0][1] - data[0][0]) * -2 + 420)
