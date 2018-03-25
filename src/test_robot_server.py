@@ -9,7 +9,7 @@ pwm.set_pwm_freq(60)
 FL_channel = 0
 FR_channel = 1
 BL_channel = 2
-BR_channel = 3
+BR_channel = 5
 
 port = 55555
 s = socket.socket()
