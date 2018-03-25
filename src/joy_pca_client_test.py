@@ -17,7 +17,7 @@ pygame.joystick.init()
 xbone = pygame.joystick.Joystick(0)
 xbone.init()
 
-joystick_dead_band = 0  # max value = 127
+joystick_dead_band = 15  # max value = 127
 
 # print("num of joysticks", pygame.joystick.get_count())
 # print("name is", xbone.get_name())

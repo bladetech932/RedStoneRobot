@@ -20,9 +20,9 @@ conn, addr = s.accept()
 
 while True:
 
-    msg_data = conn.recv(1024)
+    packed = conn.recv(1024)
 
-    data = msgpack.unpackb(msg_data)
+    unpacked = msgpack.unpackb(packed)
 
     FL_motor = ((-data[0][1] + data[0][0]) * -2 + 420)
     FR_motor = ((-data[0][1] - data[0][0]) * 2 + 420)
