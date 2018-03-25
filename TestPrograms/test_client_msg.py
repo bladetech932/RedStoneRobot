@@ -56,5 +56,5 @@ while xbone.get_button(7) is 0:
 
 
     # print(sys.getsizeof(pickled_xbone))
-    s.send(packed)
+    s.send_multipart([packed])
     time.sleep(0.1)
