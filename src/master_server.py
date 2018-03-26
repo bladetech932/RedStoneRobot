@@ -169,7 +169,7 @@ def navigation():
         leftMove()
     else if sensor[0] >= 1 and sensor[1] >= 1 and sensor[2] >= 1 and sensor[3] >= 1 and sensor[4] >= 1 and sensor[5] >= 1 and sensor[6] >= 1 and sensor[7] >= 1):
         backwardMove()
-#Beginning to pick up
+#Beginning and pick up
 def beggining():
     sensors = []
     sensor = ping()
@@ -184,10 +184,44 @@ def beggining():
         distance = circles()
         # Not on target
         if (distance):
+# After pick up to bridge
+def middle():
+    #Find a way to check to see how many turns the robot has done to know when the bridge is coming up.
+    right = 0;
+    while(right < 5):
+        navigation();
+    navigation()
+
+def bridge():
 
 
+def findingZone():
 
+def zone():
 
+def slolom():
 
+def afterslolomToSprint():
+
+def sprint():
+    lol = []
+    lol = ping()
+    if():
+        FL_motor = ((-data[0][1] + data[0][0]) * -2 + 420)
+        FR_motor = ((-data[0][1] - data[0][0]) * 2 + 420)
+        BL_motor = ((-data[0][1] - data[0][0]) * -2 + 420)
+        BR_motor = ((-data[0][1] + data[0][0]) * 2 + 420)
+    else if():
+
+        FL_motor = ((-data[0][1] + data[0][0]) * -2 + 420)
+        FR_motor = ((-data[0][1] - data[0][0]) * 2 + 420)
+        BL_motor = ((-data[0][1] - data[0][0]) * -2 + 420)
+        BR_motor = ((-data[0][1] + data[0][0]) * 2 + 420)
+    else if():
+
+        FL_motor = ((-data[0][1] + data[0][0]) * -2 + 420)
+        FR_motor = ((-data[0][1] - data[0][0]) * 2 + 420)
+        BL_motor = ((-data[0][1] - data[0][0]) * -2 + 420)
+        BR_motor = ((-data[0][1] + data[0][0]) * 2 + 420)                
 conn.close()
 s.close()
