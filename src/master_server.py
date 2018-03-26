@@ -196,10 +196,28 @@ def bridge():
 
 
 def findingZone():
+    distance = []
+
+    navigation()
+    forwardMove()
+    pic()
+
+
+    try:
+        distance = circles()
+    except Exception as e:
+        navigation()
+
 
 def zone():
 
 def slolom():
+    while(true)
+    distance = []
+    distance = ping()
+    if(distance[1] <= 1 and distance[2] <= 1):
+        leftStrafe()
+    else if(distance[0] >=1 and distance[])
 
 def afterslolomToSprint():
 
@@ -222,6 +240,11 @@ def sprint():
         FL_motor = ((-data[0][1] + data[0][0]) * -2 + 420)
         FR_motor = ((-data[0][1] - data[0][0]) * 2 + 420)
         BL_motor = ((-data[0][1] - data[0][0]) * -2 + 420)
-        BR_motor = ((-data[0][1] + data[0][0]) * 2 + 420)                
+        BR_motor = ((-data[0][1] + data[0][0]) * 2 + 420)
+    else:
+            FL_motor = ((-data[0][1] + data[0][0]) * -2 + 420)
+            FR_motor = ((-data[0][1] - data[0][0]) * 2 + 420)
+            BL_motor = ((-data[0][1] - data[0][0]) * -2 + 420)
+            BR_motor = ((-data[0][1] + data[0][0]) * 2 + 420)
 conn.close()
 s.close()
