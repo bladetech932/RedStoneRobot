@@ -13,9 +13,11 @@ import time
 
 
 cap = cv2.VideoCapture(0)
-
 pwm = pca.PCA9685()
 pwm.set_pwm_freq(60)
+
+# Sets up what pins on the PCA that is being used, change for which pins you are using.
+
 FL_channel = 0
 FR_channel = 1
 BL_channel = 2
@@ -23,6 +25,7 @@ BR_channel = 3
 
 
 port = 55555
+#Creating a socket that is called s
 s = socket.socket()
 s.bind(('', port))
 s.listen(1)
