@@ -33,13 +33,19 @@ print("waiting for connection...")
 conn, addr = s.accept()
 
 def pic():
+    # This makes the system take a picture and call it test.jpg
     s.system("raspistill -t 1000 -vf -n -hf -o test.jpg -w 640 -h 480 -q 50")
+    #This sets the variable img to test.jpg so that it can be edited.
     img = cv2.imread('test.jpg', 0)
 
 def picShow():
+    #Shows the picture saved in img for testing purposes.
     cv2.imshow('video', img)
 
 def circles():
+    # This method draws the circles on the image and gets the distance from the center of the pic to the center of the circle
+    # Note this needs to be edited to return those values.
+    # Note add more exceptions.
     img = cv2.imread('test.jpg', 0)
     img_height, img_width = img.shape
     img = cv2.medianBlur(img, 5)
@@ -63,9 +69,12 @@ def circles():
         cv2.arrowedLine(cimg, (int(img_width/2), int(img_height/2)), (apple, lamp), (0, 89, 217), 2)
         list = [apple, lamp]
     return list
-def manualDrive():
-    try:
 
+
+def manualDrive():
+    #This method is to allow the manuel controll of the robot using a XBOX ONE controller.
+    #This should be put into a loop, so that it can be run repeatedly.
+    try:
         pickled_data = conn.recv(1024)
         data = pickle.loads(pickled_data)
 
@@ -83,13 +92,13 @@ def manualDrive():
     except Exception as e:
         print(e)
 
-def ping():
+def ping(int pinNum):
 
     GPIO.setmode(GPIO.BCM)
     trig = 23
     echo = 24
 
-    print("distance measurement in progress")
+    #print("distance measurement in progress")
 
     GPIO.setup(trig,GPIO.OUT)
     GPIO.setup(echo,GPIO.IN)
@@ -99,34 +108,39 @@ def ping():
     avg = 0
 
     GPIO.output(trig,False)
-    print("Settle")
+    #print("Settle")
     time.sleep(2)
-    while True:
-            #count += 1
-            GPIO.output(trig, True)
-            time.sleep(0.00001)
-            GPIO.output(trig, False)
+  
+    GPIO.output(trig, True)
+    time.sleep(0.00001)
+    GPIO.output(trig, False)
 
-            while GPIO.input(echo)==0:
-                    #print("time is ",time.time())
-                    pulse_start = time.time()
-            while GPIO.input(echo)==1:
-                    #print("time is ",time.time())
-                    pulse_end = time.time()
-            pulse_length = pulse_end - pulse_start
+    while GPIO.input(echo)==0:
+        #print("time is ",time.time())
+        pulse_start = time.time()
+    while GPIO.input(echo)==1:
+        #print("time is ",time.time())
+         pulse_end = time.time()
+         pulse_length = pulse_end - pulse_start
 
-            dist = 17150 * pulse_length
-            #total += dist
-            #avg = total / count
-            #if count %10 == 0:
-            if dist <= 10000:
-                    print("distance:",round(dist),"cm")
-                    #count = 0
-                    #total = 0
-            time.sleep(.02)
-
+    dist = 17150 * pulse_length
+    #total += dist
+    #avg = total / count
+    #if count %10 == 0:
+     if dist <= 10000:
+        print("distance:",round(dist),"cm")
+      #count = 0
+      #total = 0
+      time.sleep(.02)
+    return distance
     GPIO.cleanup()
 
+def pings():
+    table = []
+    #This should function like ping, but should return an array of 8 legth
+    for i in range(8):
+        table[i] = ping(i)
+    return table    
 def laser():
 
     sensor = 7
@@ -146,17 +160,17 @@ def laser():
     GPIO.cleanup()
 
 def rightMove():
-
+#Make John do this
 def leftMove():
-
+#Make John do this
 def forwardMove():
-
+#Make John do this
 def backwardMove():
-
+#Make John do this
 def rightStrafe():
-
+#Make John do this
 def leftStrafe():
-
+#Make John do this
 def navigation():
     sensor = []
     sensor = ping()
@@ -218,36 +232,25 @@ def slolom():
     while(true)
     distance = []
     distance = ping()
-    if(distance[1] <= 1 and distance[2] <= 1):
+    if(distance[0] >= 1 and distance[1] <= 1 and distance[2] <= 1 and distance[4] >= 1):
         leftStrafe()
-    else if(distance[0] >=1 and distance[])
+    else if(distance[0] <=1 and distance[1] >= 1 and distance [2] >= 1 and distance[4] <= 1)
+        forwardMove()
+    else if(distance[0] <= 1 and distance[1] <= 1 and distance[2] <= 1 and distance[3] >=1 and distance[4] >= 1 and distance[7] >= 1)
+        rightStrafe()
+    else if()    
 
 def afterslolomToSprint():
 
 def sprint():
     lol = []
-    lol = ping()
+    lol = pings()
     if():
-        FL_motor = ((-data[0][1] + data[0][0]) * -2 + 420)
-        FR_motor = ((-data[0][1] - data[0][0]) * 2 + 420)
-        BL_motor = ((-data[0][1] - data[0][0]) * -2 + 420)
-        BR_motor = ((-data[0][1] + data[0][0]) * 2 + 420)
+      forwardMove()
     else if():
-
-        FL_motor = ((-data[0][1] + data[0][0]) * -2 + 420)
-        FR_motor = ((-data[0][1] - data[0][0]) * 2 + 420)
-        BL_motor = ((-data[0][1] - data[0][0]) * -2 + 420)
-        BR_motor = ((-data[0][1] + data[0][0]) * 2 + 420)
+        rightStrafe()
     else if():
-
-        FL_motor = ((-data[0][1] + data[0][0]) * -2 + 420)
-        FR_motor = ((-data[0][1] - data[0][0]) * 2 + 420)
-        BL_motor = ((-data[0][1] - data[0][0]) * -2 + 420)
-        BR_motor = ((-data[0][1] + data[0][0]) * 2 + 420)
-    else:
-            FL_motor = ((-data[0][1] + data[0][0]) * -2 + 420)
-            FR_motor = ((-data[0][1] - data[0][0]) * 2 + 420)
-            BL_motor = ((-data[0][1] - data[0][0]) * -2 + 420)
-            BR_motor = ((-data[0][1] + data[0][0]) * 2 + 420)
+         leftStrafe()
+            
 conn.close()
 s.close()
